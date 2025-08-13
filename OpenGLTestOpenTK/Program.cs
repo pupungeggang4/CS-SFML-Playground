@@ -28,6 +28,9 @@ public class Program {
         window.Resized += new EventHandler<SizeEventArgs>(OnResized);
         window.SetActive();
 
+        var buttonCount = Joystick.GetButtonCount(1);
+        Console.WriteLine(buttonCount);
+
         // Enable Z-buffer read and write
         GL.Enable(EnableCap.DepthTest);
         GL.DepthMask(true);
@@ -98,6 +101,11 @@ public class Program {
         while (window.IsOpen)
         {
             window.DispatchEvents();
+            for (uint i = 0; i < buttonCount; i++) {
+                if (Joystick.IsButtonPressed(1, i)) {
+                    Console.WriteLine(i);
+                }
+            }
             GL.Clear(ClearBufferMask.DepthBufferBit);
             GL.DrawArrays(OpenTK.Graphics.OpenGL.PrimitiveType.Triangles, 0, 36);
             window.PushGLStates();
