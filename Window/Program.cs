@@ -9,7 +9,6 @@ class Program
 {
     private static void Main()
     {
-        Console.WriteLine(SFML.System.SFML_VERSION_MAJOR);
         Console.WriteLine("Press ESC key to close window");
         var window = new SimpleWindow();
         window.Run();
